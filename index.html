@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SJC Canteen</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #222;
+        }
+
+        header {
+            background: linear-gradient(135deg, #123c69, #0b6e99);
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        header h1 {
+            font-size: 36px;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            font-size: 17px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 25px auto;
+        }
+
+        .user-box {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+        }
+
+        .user-box label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .user-box input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .food-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+        }
+
+        .food-card {
+            background: white;
+            border-radius: 12px;
+            padding: 18px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        .food-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .food-icon {
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+
+        .food-card h3 {
+            color: #123c69;
+            margin-bottom: 8px;
+        }
+
+        .price {
+            color: #0b8f55;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .food-card input {
+            width: 70px;
+            padding: 8px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        .order-btn {
+            display: block;
+            margin: 30px auto;
+            padding: 15px 40px;
+            background: #0b6e99;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .order-btn:hover {
+            background: #084d6d;
+        }
+
+        #orderResult {
+            display: none;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 25px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+            border-left: 6px solid #0b8f55;
+        }
+
+        #orderResult h2 {
+            color: #0b8f55;
+            margin-bottom: 12px;
+        }
+
+        #orderResult p {
+            margin: 8px 0;
+        }
+
+        .success {
+            color: #0b8f55;
+            font-weight: bold;
+        }
+
+        footer {
+            background: #123c69;
+            color: white;
+            text-align: center;
+            padding: 18px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🍴 SJC CANTEEN</h1>
+    <p>Fresh Food • Quick Service • Easy Ordering</p>
+</header>
+
+<div class="container">
+
+    <div class="user-box">
+        <label for="userName">Enter Your Name</label>
+        <input type="text" id="userName" placeholder="Enter your name">
+    </div>
+
+    <h2 style="margin-bottom: 18px;">🍽️ Available Food Items</h2>
+
+    <div class="food-container">
+
+        <div class="food-card">
+            <div class="food-icon">🍔</div>
+            <h3>Veg Burger</h3>
+            <p class="price">₹50</p>
+            Quantity:
+            <input type="number" id="food1" min="0" value="0">
+        </div>
+
+        <div class="food-card">
+            <div class="food-icon">🍕</div>
+            <h3>Pizza</h3>
+            <p class="price">₹80</p>
+            Quantity:
+            <input type="number" id="food2" min="0" value="0">
+        </div>
+
+        <div class="food-card">
+            <div class="food-icon">🍜</div>
+            <h3>Noodles</h3>
+            <p class="price">₹60</p>
+            Quantity:
+            <input type="number" id="food3" min="0" value="0">
+        </div>
+
+        <div class="food-card">
+            <div class="food-icon">🍚</div>
+            <h3>Veg Fried Rice</h3>
+            <p class="price">₹70</p>
+            Quantity:
+            <input type="number" id="food4" min="0" value="0">
+        </div>
+
+        <div class="food-card">
+            <div class="food-icon">🥪</div>
+            <h3>Sandwich</h3>
+            <p class="price">₹40</p>
+            Quantity:
+            <input type="number" id="food5" min="0" value="0">
+        </div>
+
+        <div class="food-card">
+            <div class="food-icon">🍟</div>
+            <h3>French Fries</h3>
+            <p class="price">₹45</p>
+            Quantity:
+            <input type="number" id="food6" min="0" value="0">
+        </div>
+
+        <div class="food-card">
+            <div class="food-icon">🌯</div>
+            <h3>Veg Roll</h3>
+            <p class="price">₹35</p>
+            Quantity:
+            <input type="number" id="food7" min="0" value="0">
+        </div>
+
+        <div class="food-card">
+            <div class="food-icon">🍛</div>
+            <h3>Veg Meals</h3>
+            <p class="price">₹90</p>
+            Quantity:
+            <input type="number" id="food8" min="0" value="0">
+        </div>
+
+        <div class="food-card">
+            <div class="food-icon">🥞</div>
+            <h3>Dosa</h3>
+            <p class="price">₹40</p>
+            Quantity:
+            <input type="number" id="food9" min="0" value="0">
+        </div>
+
+        <div class="food-card">
+            <div class="food-icon">🍝</div>
+            <h3>Pasta</h3>
+            <p class="price">₹75</p>
+            Quantity:
+            <input type="number" id="food10" min="0" value="0">
+        </div>
+
+        <div class="food-card">
+            <div class="food-icon">🍿</div>
+            <h3>Popcorn</h3>
+            <p class="price">₹30</p>
+            Quantity:
+            <input type="number" id="food11" min="0" value="0">
+        </div>
+
+        <div class="food-card">
+            <div class="food-icon">☕</div>
+            <h3>Tea</h3>
+            <p class="price">₹15</p>
+            Quantity:
+            <input type="number" id="food12" min="0" value="0">
+        </div>
+
+        <div class="food-card">
+            <div class="food-icon">🥤</div>
+            <h3>Fresh Juice</h3>
+            <p class="price">₹40</p>
+            Quantity:
+            <input type="number" id="food13" min="0" value="0">
+        </div>
+
+        <div class="food-card">
+            <div class="food-icon">🥤</div>
+            <h3>Cold Drink</h3>
+            <p class="price">₹35</p>
+            Quantity:
+            <input type="number" id="food14" min="0" value="0">
+        </div>
+
+        <div class="food-card">
+            <div class="food-icon">🍦</div>
+            <h3>Ice Cream</h3>
+            <p class="price">₹50</p>
+            Quantity:
+            <input type="number" id="food15" min="0" value="0">
+        </div>
+
+    </div>
+
+    <button class="order-btn" onclick="placeOrder()">
+        🛒 Place Order
+    </button>
+
+    <div id="orderResult"></div>
+
+</div>
+
+<footer>
+    © 2026 SJC Canteen | College Food Ordering System
+</footer>
+
+<script>
+
+function placeOrder() {
+
+    let name = document.getElementById("userName").value.trim();
+
+    if (name === "") {
+        alert("Please enter your name!");
+        return;
+    }
+
+    const foods = [
+        ["Veg Burger", 50, "food1"],
+        ["Pizza", 80, "food2"],
+        ["Noodles", 60, "food3"],
+        ["Veg Fried Rice", 70, "food4"],
+        ["Sandwich", 40, "food5"],
+        ["French Fries", 45, "food6"],
+        ["Veg Roll", 35, "food7"],
+        ["Veg Meals", 90, "food8"],
+        ["Dosa", 40, "food9"],
+        ["Pasta", 75, "food10"],
+        ["Popcorn", 30, "food11"],
+        ["Tea", 15, "food12"],
+        ["Fresh Juice", 40, "food13"],
+        ["Cold Drink", 35, "food14"],
+        ["Ice Cream", 50, "food15"]
+    ];
+
+    let orderDetails = "";
+    let total = 0;
+    let hasOrder = false;
+
+    foods.forEach(function(food) {
+
+        let quantity = parseInt(
+            document.getElementById(food[2]).value
+        );
+
+        if (quantity > 0) {
+
+            hasOrder = true;
+
+            let itemTotal = food[1] * quantity;
+            total += itemTotal;
+
+            orderDetails +=
+                `<p>🍴 ${food[0]} × ${quantity} = ₹${itemTotal}</p>`;
+        }
+    });
+
+    if (!hasOrder) {
+        alert("Please select at least one food item!");
+        return;
+    }
+
+    let result = document.getElementById("orderResult");
+
+    result.style.display = "block";
+
+    result.innerHTML = `
+        <h2>✅ Order Placed Successfully!</h2>
+
+        <p><strong>👤 Order Placed By:</strong> ${name}</p>
+
+        <hr style="margin:15px 0;">
+
+        <h3>🛍️ Your Order:</h3>
+
+        ${orderDetails}
+
+        <hr style="margin:15px 0;">
+
+        <h2>Total Amount: ₹${total}</h2>
+
+        <p class="success">
+            🎉 Thank you, ${name}! Your order has been placed at SJC Canteen.
+        </p>
+    `;
+
+    result.scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+</script>
+
+</body>
+</html>
